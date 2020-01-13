@@ -21,10 +21,11 @@ export default class RouterController extends React.Component{
         this.state = {isConnected: false};
     }
 
-  render() {
+    render() {
 
-    return(
-        <ToggleRouter isConnected={this.state.isConnected}/>
-    )
-  }
+        return(
+            <ToggleRouter isConnected={this.state.isConnected}/>
+        )
+    }
 }
+
