@@ -2,8 +2,11 @@ import React from "react";
 
 import '../ComponentsCSS/offlineForms.css';
 
-export default class Login extends React.Component {
+//REDUX
+import {connect} from 'react-redux';
+import {toggleConnection} from '../redux/actions'
 
+class Login extends React.Component {
     render(){
         return (
             <div className="wrapper fadeInDown">
@@ -16,7 +19,7 @@ export default class Login extends React.Component {
                     <form>
                         <input type="text" id="login" className="fadeIn second" name="login" placeholder="Identifiant"/>
                         <input type="password" id="password" className="fadeIn third" name="login" placeholder="Mot de passe"/>
-                        <input type="submit" className="fadeIn fourth" value="Se connecter"/>
+                        <input type="button" className="fadeIn fourth" value="Se connecter" onClick={this.props.toggleConnection}/>
                     </form>
 
                 </div>
@@ -24,3 +27,8 @@ export default class Login extends React.Component {
         );
     }
 }
+
+export default connect(
+    null,//Listener
+    {toggleConnection}//actions
+)(Login)

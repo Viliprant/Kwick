@@ -4,6 +4,9 @@ import React from 'react';
 import OfflineRouter from './OfflineRouter';
 import OnlineRouter from './OnlineRouter';
 
+//REDUX
+import {connect} from 'react-redux';
+
 function ToggleRouter(props)
 {
     if(props.isConnected)
@@ -14,18 +17,25 @@ function ToggleRouter(props)
     return <OfflineRouter/>
 }
 
-export default class RouterController extends React.Component{
-
-    constructor(props) {
-        super(props);
-        this.state = {isConnected: false};
-    }
+class RouterController extends React.Component{
 
     render() {
 
         return(
-            <ToggleRouter isConnected={this.state.isConnected}/>
+            <ToggleRouter isConnected={this.props.isConnected}/>
         )
     }
 }
+
+const mapStateToProps = (state, ownProps) => {
+    const newState = {...state};
+    return {
+        isConnected: newState.isConnected
+    }
+}
+
+export default connect(
+    mapStateToProps,//listener,
+    null//actions
+)(RouterController);
 
