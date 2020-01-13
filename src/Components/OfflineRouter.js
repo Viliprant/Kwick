@@ -9,7 +9,7 @@ export default function OnlineRouter() {
   return (
     <Router>
         <Switch>
-          <Route exact path="/">
+          <Route path="*">
           </Route>
           <Route path="/signup">
           </Route>
