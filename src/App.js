@@ -1,10 +1,12 @@
 import React from 'react';
 import './App.css';
-import MainRouter from './Components/MainRouter';
+
+import RouterController from './Components/RouterController';
 
 function App() {
+
   return (
-      <MainRouter/>
+    <RouterController/>
   );
 }
 

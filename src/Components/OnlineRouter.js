@@ -6,7 +6,7 @@ import {
   Link
 } from "react-router-dom";
 
-export default function MainRouter() {
+export default function OnlineRouter() {
   return (
     <Router>
       <div>
