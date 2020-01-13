@@ -4,7 +4,6 @@ import React from 'react';
 import OfflineRouter from './OfflineRouter';
 import OnlineRouter from './OnlineRouter';
 
-//Permet de changer le router s'il est connecté ou non.
 function ToggleRouter(props)
 {
     if(props.isConnected)
