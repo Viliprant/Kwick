@@ -9,7 +9,8 @@ import {connect} from 'react-redux';
 
 function ToggleRouter(props)
 {
-    if(props.isConnected)
+    console.log('ToggleRouter:', props)
+    if(props.id != null)
     {
         return <OnlineRouter/>
     }
@@ -22,7 +23,7 @@ class RouterController extends React.Component{
     render() {
 
         return(
-            <ToggleRouter isConnected={this.props.isConnected}/>
+            <ToggleRouter id={this.props.id}/>
         )
     }
 }
@@ -30,7 +31,8 @@ class RouterController extends React.Component{
 const mapStateToProps = (state, ownProps) => {
     const newState = {...state};
     return {
-        isConnected: newState.isConnected
+        id: newState.id,
+        token: newState.token
     }
 }
 

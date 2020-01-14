@@ -5,6 +5,10 @@ import '../ComponentsCSS/offlineForms.css';
 import logo from '../assets/Kwick-logo.png';
 import promisedJSONP from '../Helpers/promisedJsonp';
 
+//REDUX
+import {connect} from 'react-redux';
+import {connectUser} from '../redux/actions'
+
 class SignUp extends React.Component {
 
     constructor(props){
@@ -16,12 +20,13 @@ class SignUp extends React.Component {
         }
     }
 
-    onSubmitSignUp = event => {
+    onSubmitSignUp = async (event) => {
         event.preventDefault();
-        const isValid = this.verifyRegistration();
-        if(isValid)
+        const userData = await this.verifyRegistration();
+        if(userData !== false)
         {
-            console.log('isValid:',isValid)
+            console.log('Change Store...');
+            this.props.connectUser(userData);
         }
     }
 
@@ -33,13 +38,12 @@ class SignUp extends React.Component {
         });
     }
 
-    sendRegistrationToAPI = (identifiant, mdp) => {
+    sendRegistrationToAPI = async (identifiant, mdp) => {
         const url = 'http://greenvelvet.alwaysdata.net/kwick/api/signup';
         console.log("Sendind to API...");
         
-        promisedJSONP(`${url}/${identifiant}/${mdp}`)
+        return await promisedJSONP(`${url}/${identifiant}/${mdp}`)
             .then((response) => {
-                console.log('Response:', response);
                 if(response.kwick.status !== 'ok')
                 {
                     console.log('Il y a eu un problème avec le serveur:', response.kwick.status)
@@ -50,14 +54,18 @@ class SignUp extends React.Component {
                     console.log('Il y a eu un problème avec les éléments renseignés:', response.result.message)
                     return false;
                 }
-                return true;
+                const userData = {
+                    id: response.result.id,
+                    token: response.result.token
+                }
+                return userData;
             })
             .catch(() => {
                 return false;
             })
     }
 
-    verifyRegistration = () => {
+    verifyRegistration = async () => {
         const formValue = {...this.state};
 
         //Minimum 8 caractères
@@ -74,13 +82,13 @@ class SignUp extends React.Component {
             return false;
         }
 
-        const stateRequest = this.sendRegistrationToAPI(formValue.inputIdentifiant, formValue.inputMdp);
-        if(stateRequest === false)
+        const userData = await this.sendRegistrationToAPI(formValue.inputIdentifiant, formValue.inputMdp);
+        if(userData === false)
         {
             return false
         }
 
-        return true;
+        return userData;
     }
 
     render(){
@@ -110,4 +118,7 @@ class SignUp extends React.Component {
     }
 }
 
-export default SignUp;
+export default connect(
+    null,//Listener
+    {connectUser}//actions
+    )(SignUp)
