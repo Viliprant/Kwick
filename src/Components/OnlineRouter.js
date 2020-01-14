@@ -6,29 +6,28 @@ import {
   Link
 } from "react-router-dom";
 
+import logo from '../assets/Kwick-logo-32.png';
+
+import '../ComponentsCSS/navbar.css';
+
 export default function OnlineRouter() {
   return (
     <Router>
       <div>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/users">Utilisateurs</Link>
-          </li>
-          <li>
-            <Link to="/logout">Déconnexion</Link>
-          </li>
-        </ul>
+      <nav className="navbar navbar-light bg-light">
+        <Link className="navbar-brand" to="logout">
+        <img style={{marginRight: "10px"}} src={logo} alt=""/>
+        Kwick
+        </Link>
+        <div className="form-inline">
+          <Link className="nav-link" to="logout">Déconnexion</Link>
+        </div>
+      </nav>
 
         <Switch>
-          <Route exact path="/">
-          </Route>
-          <Route path="/users">
-          </Route>
-          <Route path="/logout">
-          </Route>
+          <Route exact path="/"/>
+          <Route path="/users"/>
+          <Route path="/logout"/>
         </Switch>
       </div>
     </Router>

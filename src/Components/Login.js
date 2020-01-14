@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 
 import '../ComponentsCSS/offlineForms.css';
-import logo from '../assets/Kwick-logo.png';
+import logo from '../assets/Kwick-logo-144.png';
 import {promisedJSONP, verifyStateResponse} from '../Helpers/helpersAPI';
 import {handleChange} from '../Helpers/helpersComponent'
 
