@@ -3,13 +3,7 @@ import {Link} from "react-router-dom";
 
 import '../ComponentsCSS/offlineForms.css';
 import logo from '../assets/Kwick-logo.png';
-
-const jsonp = require('jsonp-promise');
-
-async function promisedJSONP(url, params){
-    let promise = await jsonp(url, params).promise;
-    return promise;
-}
+import promisedJSONP from '../Helpers/promisedJsonp';
 
 class SignUp extends React.Component {
 
@@ -45,11 +39,8 @@ class SignUp extends React.Component {
         
         promisedJSONP(`${url}/${identifiant}/${mdp}`)
             .then((response) => {
-                console.log('Response:', response)
+                console.log('Response:', response);
             })
-            .catch((error) => {
-                console.log('Error:', error)    
-            });
     }
 
     verifyRegistration = () => {
