@@ -43,11 +43,17 @@ class SignUp extends React.Component {
                 if(response.kwick.status !== 'ok')
                 {
                     console.log('Il y a eu un problème avec le serveur:', response.kwick.status)
+                    return false;
                 }
                 if(response.result.status !== 'done')
                 {
                     console.log('Il y a eu un problème avec les éléments renseignés:', response.result.message)
+                    return false;
                 }
+                return true;
+            })
+            .catch(() => {
+                return false;
             })
     }
 
@@ -68,7 +74,11 @@ class SignUp extends React.Component {
             return false;
         }
 
-        this.sendRegistrationToAPI(formValue.inputIdentifiant, formValue.inputMdp);
+        const stateRequest = this.sendRegistrationToAPI(formValue.inputIdentifiant, formValue.inputMdp);
+        if(stateRequest === false)
+        {
+            return false
+        }
 
         return true;
     }
