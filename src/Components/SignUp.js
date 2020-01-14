@@ -17,7 +17,11 @@ class SignUp extends React.Component {
 
     onSubmitSignUp = event => {
         event.preventDefault();
-        this.verifyRegistration();
+        const isValid = this.verifyRegistration();
+        if(isValid)
+        {
+            console.log('isValid:',isValid)
+        }
     }
 
     handleChange = event => {
@@ -28,8 +32,24 @@ class SignUp extends React.Component {
         });
     }
 
-    verifyRegistration(){
-        console.log("Vérifié");
+    verifyRegistration = () => {
+        const formValue = {...this.state};
+
+        //Minimum 8 caractères
+        if(formValue.inputMdp.length < 8)
+        {
+            console.log('8 caractères minimum. Actuel:', formValue.inputMdp.length)
+            return false;
+        }
+
+        //Coherence des deux mots de passe
+        if(formValue.inputMdp !== formValue.inputConfirmMdp)
+        {
+            console.log('Les deux mots de passe ne correspondent pas.')
+            return false;
+        }
+
+        return true;
     }
 
     render(){
