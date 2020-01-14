@@ -22,7 +22,7 @@ class Login extends React.Component {
                     <form>
                         <input type="text" id="login" className="fadeIn second" name="login" placeholder="Identifiant"/>
                         <input type="password" id="password" className="fadeIn third" name="login" placeholder="Mot de passe"/>
-                        <input type="button" className="fadeIn fourth" value="Se connecter" onClick={this.props.toggleConnection}/>
+                        <input type="button" className="fadeIn fourth" value="Se connecter"/>
                     </form>
                     
                     <div id="formFooter">
