@@ -1,3 +1,23 @@
-body{
-    
+#mainNavbar .linkP{
+    color: #56baed;
+    font-size: 1.10rem;
+}
+
+#mainNavbar .linkP:hover{
+    color: black;
+    font-size: 1.10rem;
+}
+
+.list-link li{
+    list-style:none;
+}
+.list-link{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+}
+
+.selectedLinkP{
+    color: red;
 }
