@@ -6,16 +6,14 @@ import {
 } from "react-router-dom";
 
 import Login from './Login';
+import SignUp from './SignUp';
 
-export default function OnlineRouter() {
+export default function OfflineRouter() {
   return (
     <Router>
         <Switch>
-          <Route path="*">
-            <Login/>
-          </Route>
-          <Route path="/signup">
-          </Route>
+          <Route exact path="/" component={Login}/>
+          <Route path="/signup" component={SignUp}/>
         </Switch>
     </Router>
   );
