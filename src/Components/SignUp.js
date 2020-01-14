@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import '../ComponentsCSS/offlineForms.css';
 import logo from '../assets/Kwick-logo.png';
 import {promisedJSONP, verifyStateResponse} from '../Helpers/helpersAPI';
+import {handleChange} from '../Helpers/helpersComponent'
 
 //REDUX
 import {connect} from 'react-redux';
@@ -18,6 +19,7 @@ class SignUp extends React.Component {
             inputMdp: "",
             inputConfirmMdp: ""
         }
+        this.handleChange = handleChange.bind(this);
     }
 
     onSubmitSignUp = async (event) => {
@@ -28,14 +30,6 @@ class SignUp extends React.Component {
             console.log('Change Store...');
             this.props.connectUser(userData);
         }
-    }
-
-    handleChange = event => {
-        const value = event.target.value;
-        this.setState({
-            ...this.state,
-            [event.target.name]: value
-        });
     }
 
     sendRegistrationToAPI = async (identifiant, mdp) => {
