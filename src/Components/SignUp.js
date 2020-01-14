@@ -40,6 +40,14 @@ class SignUp extends React.Component {
         promisedJSONP(`${url}/${identifiant}/${mdp}`)
             .then((response) => {
                 console.log('Response:', response);
+                if(response.kwick.status !== 'ok')
+                {
+                    console.log('Il y a eu un problème avec le serveur:', response.kwick.status)
+                }
+                if(response.result.status !== 'done')
+                {
+                    console.log('Il y a eu un problème avec les éléments renseignés:', response.result.message)
+                }
             })
     }
 
