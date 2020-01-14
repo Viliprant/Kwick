@@ -9,7 +9,6 @@ import {connect} from 'react-redux';
 
 function ToggleRouter(props)
 {
-    console.log('ToggleRouter:', props)
     if(props.id != null)
     {
         return <OnlineRouter/>

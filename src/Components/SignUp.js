@@ -32,28 +32,6 @@ class SignUp extends React.Component {
         }
     }
 
-    sendRegistrationToAPI = async (identifiant, mdp) => {
-        const url = 'http://greenvelvet.alwaysdata.net/kwick/api/signup';
-        console.log("Sendind to API...");
-        
-        return await promisedJSONP(`${url}/${identifiant}/${mdp}`)
-            .then((response) => {
-                if(!verifyStateResponse(response))
-                {
-                    return false
-                }
-
-                const userData = {
-                    id: response.result.id,
-                    token: response.result.token
-                }
-                return userData;
-            })
-            .catch(() => {
-                return false;
-            })
-    }
-
     verifyRegistration = async () => {
         const formValue = {...this.state};
 
@@ -78,6 +56,28 @@ class SignUp extends React.Component {
         }
 
         return userData;
+    }
+
+    sendRegistrationToAPI = async (identifiant, mdp) => {
+        const url = 'http://greenvelvet.alwaysdata.net/kwick/api/signup';
+        console.log("Sendind to API...");
+        
+        return await promisedJSONP(`${url}/${identifiant}/${mdp}`)
+            .then((response) => {
+                if(!verifyStateResponse(response))
+                {
+                    return false
+                }
+
+                const userData = {
+                    id: response.result.id,
+                    token: response.result.token
+                }
+                return userData;
+            })
+            .catch(() => {
+                return false;
+            })
     }
 
     render(){
