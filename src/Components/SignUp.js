@@ -4,6 +4,13 @@ import {Link} from "react-router-dom";
 import '../ComponentsCSS/offlineForms.css';
 import logo from '../assets/Kwick-logo.png';
 
+const jsonp = require('jsonp-promise');
+
+async function promisedJSONP(url, params){
+    let promise = await jsonp(url, params).promise;
+    return promise;
+}
+
 class SignUp extends React.Component {
 
     constructor(props){
@@ -32,6 +39,19 @@ class SignUp extends React.Component {
         });
     }
 
+    sendRegistrationToAPI = (identifiant, mdp) => {
+        const url = 'http://greenvelvet.alwaysdata.net/kwick/api/signup';
+        console.log("Sendind to API...");
+        
+        promisedJSONP(`${url}/${identifiant}/${mdp}`)
+            .then((response) => {
+                console.log('Response:', response)
+            })
+            .catch((error) => {
+                console.log('Error:', error)    
+            });
+    }
+
     verifyRegistration = () => {
         const formValue = {...this.state};
 
@@ -48,6 +68,8 @@ class SignUp extends React.Component {
             console.log('Les deux mots de passe ne correspondent pas.')
             return false;
         }
+
+        this.sendRegistrationToAPI(formValue.inputIdentifiant, formValue.inputMdp);
 
         return true;
     }
