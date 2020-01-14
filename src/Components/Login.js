@@ -20,8 +20,8 @@ class Login extends React.Component {
                     </div>
                         
                     <form>
-                        <input type="text" id="login" className="fadeIn second" name="login" placeholder="Identifiant"/>
-                        <input type="password" id="password" className="fadeIn third" name="login" placeholder="Mot de passe"/>
+                        <input type="text" id="login" className="fadeIn second" name="inputIdentifiant" placeholder="Identifiant"/>
+                        <input type="password" id="password" className="fadeIn third" name="inputMdp" placeholder="Mot de passe"/>
                         <input type="button" className="fadeIn fourth" value="Se connecter"/>
                     </form>
                     
