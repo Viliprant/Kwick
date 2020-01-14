@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 import '../ComponentsCSS/offlineForms.css';
 import logo from '../assets/Kwick-logo.png';
-import promisedJSONP from '../Helpers/promisedJsonp';
+import {promisedJSONP, verifyStateResponse} from '../Helpers/helpersAPI';
 
 //REDUX
 import {connect} from 'react-redux';
@@ -44,16 +44,11 @@ class SignUp extends React.Component {
         
         return await promisedJSONP(`${url}/${identifiant}/${mdp}`)
             .then((response) => {
-                if(response.kwick.status !== 'ok')
+                if(!verifyStateResponse(response))
                 {
-                    console.log('Il y a eu un problème avec le serveur:', response.kwick.status)
-                    return false;
+                    return false
                 }
-                if(response.result.status !== 'done')
-                {
-                    console.log('Il y a eu un problème avec les éléments renseignés:', response.result.message)
-                    return false;
-                }
+
                 const userData = {
                     id: response.result.id,
                     token: response.result.token
