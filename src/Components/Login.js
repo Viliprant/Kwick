@@ -3,12 +3,23 @@ import {Link} from "react-router-dom";
 
 import '../ComponentsCSS/offlineForms.css';
 import logo from '../assets/Kwick-logo.png';
+import {handleChange} from '../Helpers/helpersComponent'
 
 //REDUX
 import {connect} from 'react-redux';
 import {toggleConnection} from '../redux/actions'
 
 class Login extends React.Component {
+
+    constructor(props){
+        super(props);
+        this.state = {
+            inputIdentifiant: "",
+            inputMdp: ""
+        }
+        this.handleChange = handleChange.bind(this);
+    }
+
     render(){
         return (
             <div className="wrapper fadeInDown">
@@ -20,8 +31,8 @@ class Login extends React.Component {
                     </div>
                         
                     <form>
-                        <input type="text" id="login" className="fadeIn second" name="inputIdentifiant" placeholder="Identifiant"/>
-                        <input type="password" id="password" className="fadeIn third" name="inputMdp" placeholder="Mot de passe"/>
+                        <input type="text" id="login" className="fadeIn second" name="inputIdentifiant" value={this.state.inputIdentifiant} onChange={this.handleChange} placeholder="Identifiant"/>
+                        <input type="password" id="password" className="fadeIn third" name="inputMdp" value={this.state.inputMdp} onChange={this.handleChange} placeholder="Mot de passe"/>
                         <input type="button" className="fadeIn fourth" value="Se connecter"/>
                     </form>
                     
