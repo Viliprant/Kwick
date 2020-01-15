@@ -10,7 +10,9 @@ import '../ComponentsCSS/navbar.css';
 //REDUX
 import {connect} from 'react-redux';
 import {disconnectUser} from '../redux/actions';
+
 import NavBar from './NavBar';
+import Home from './Home';
 
 function OnlineRouter(props){
 
@@ -19,10 +21,12 @@ function OnlineRouter(props){
         <div>
           <NavBar toDisconnect={props.disconnectUser}/>
           <Switch>
-            <Route exact path="/"/>
-            <Route path="/chats"/>
-            <Route path="/users"/>
-            <Route path="/logout"/>
+            <div className="container mt-3">
+              <Route exact path="/" component={Home}/>
+              <Route path="/chats"/>
+              <Route path="/users"/>
+              <Route path="/logout"/>
+            </div>
           </Switch>
         </div>
       </Router>
