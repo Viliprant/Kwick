@@ -28,10 +28,7 @@ function NavBar(props){
             </NavLink>
         </li>
         <li className="nav-item">
-            <NavLink className="nav-link linkP" activeStyle={activeLink} exact to="/chats">Conversations</NavLink>
-        </li>
-        <li>
-            <NavLink className="nav-link linkP" activeStyle={activeLink} exact to="/users">Utilisateurs</NavLink>
+            <NavLink className="nav-link linkP" activeStyle={activeLink} exact to="/chat">Conversation</NavLink>
         </li>
         </ul>
         <div className="form-inline">

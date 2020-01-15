@@ -51,8 +51,7 @@ function OnlineRouter(props){
           <div className="container mt-3">
             <Switch>
                 <Route exact path="/" component={Home}/>
-                <Route path="/chats"/>
-                <Route path="/users"/>
+                <Route path="/chat"/>
                 <Route path="/logout"/>
             </Switch>
           </div>
