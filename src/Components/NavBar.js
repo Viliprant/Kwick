@@ -20,21 +20,21 @@ function NavBar(props){
   
     return(
         <nav id="mainNavbar" className="navbar navbar-light bg-light">
-        <ul className="list-link">
-        <li className="nav-item">
-            <NavLink  exact to="/">
-                <img style={{marginRight: "10px"}} src={logo} alt=""/>
-                <span className="navbar-brand" style={{verticalAlign: "middle"}}>Kwick</span>
-            </NavLink>
-        </li>
-        <li className="nav-item">
-            <NavLink className="nav-link linkP" activeStyle={activeLink} exact to="/chat">Conversation</NavLink>
-        </li>
-        </ul>
-        <div className="form-inline">
-            <span className="nav-link linkP" onClick={onClickDisconnect}>Déconnexion</span>
-        </div>
-    </nav>
+            <ul className="list-link">
+                <li className="nav-item">
+                    <NavLink  exact to="/">
+                        <img style={{marginRight: "10px"}} src={logo} alt=""/>
+                        <span className="navbar-brand" style={{verticalAlign: "middle"}}>Kwick</span>
+                    </NavLink>
+                </li>
+                <li className="nav-item">
+                    <NavLink className="nav-link linkP" activeStyle={activeLink} exact to="/chat">Conversation</NavLink>
+                </li>
+            </ul>
+            <div className="form-inline">
+                <span className="nav-link linkP" onClick={onClickDisconnect}>Déconnexion</span>
+            </div>
+        </nav>
         
         )
     }
