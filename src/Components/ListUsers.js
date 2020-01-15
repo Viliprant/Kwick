@@ -2,6 +2,7 @@ import React from 'react';
 
 //REDUX
 import {connect} from 'react-redux';
+import {disconnectUser} from '../redux/actions'
 
 import '../ComponentsCSS/listUsers.css';
 import {promisedJSONP, verifyStateResponse} from '../Helpers/helpersAPI';
@@ -26,11 +27,11 @@ class ListUsers extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            listLoggedUsers: ['test','test2']
+            listLoggedUsers: []
         }
     }
 
-    async getUsersLoggedFromAPI(callback){
+    async getUsersLoggedFromAPI(){
         const token = this.props.token;
         const url = 'http://greenvelvet.alwaysdata.net/kwick/api/user/logged';
         console.log("Sendind to API...");
@@ -59,7 +60,7 @@ class ListUsers extends React.Component{
                 })
             })
             .catch((error) => {
-                console.log('Error:', error);
+                this.props.disconnectUser();
             })
     }
 
@@ -88,5 +89,5 @@ const mapStateToProps = (state, ownProps) => {
 
 export default connect(
     mapStateToProps,//Listener
-    null //actions
+    {disconnectUser} //actions
     )(ListUsers)
