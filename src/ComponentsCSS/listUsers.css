@@ -1,3 +1,7 @@
+#root{
+    min-height: 100%;
+}
+
 #wrapper-tittle{
     text-align: center;
     font-size: 1.10rem;

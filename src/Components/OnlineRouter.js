@@ -47,7 +47,6 @@ function OnlineRouter(props){
 
     return (
       <Router>
-        <div>
           <NavBar toDisconnect={logOut}/>
           <div className="container mt-3">
             <Switch>
@@ -56,7 +55,6 @@ function OnlineRouter(props){
                 <Route path="/logout"/>
             </Switch>
           </div>
-        </div>
       </Router>
   );
 }
