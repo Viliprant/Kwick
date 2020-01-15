@@ -1,9 +1,14 @@
 import {createStore} from 'redux';
 import reducers from './reducers';
 
-const initialState = {
+let initialState = {
     id: null,
     token: null
+}
+const kwickSessionStorage = sessionStorage.getItem("kwick");
+if(kwickSessionStorage)
+{
+    initialState = JSON.parse(sessionStorage.getItem("kwick"));
 }
 
 export default createStore(reducers, initialState)

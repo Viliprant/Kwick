@@ -54,7 +54,6 @@ class ListUsers extends React.Component{
     componentDidMount(){
         this.getUsersLoggedFromAPI()
             .then((usersList)=>{
-                console.log('PromiseUsersList:',usersList);
                 this.setState({
                     listLoggedUsers: usersList
                 })
@@ -71,10 +70,8 @@ class ListUsers extends React.Component{
                     <span>Utilisateurs connectés :</span>
                 </div>
                 <div id="wrapper-list-users">
-                    {this.state.listLoggedUsers.map((username) =>{
-                        console.log('username: ',username);
-                        return <User key={username} username={username} />
-                    }
+                    {this.state.listLoggedUsers.map((username) =>
+                        <User key={username} username={username} />
                     )}
                 </div>
             </div>

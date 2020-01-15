@@ -5,10 +5,12 @@ function reducer(state, action) {
         case "CONNECT_USER":
             newState.id = action.userData.id;
             newState.token = action.userData.token;
+            sessionStorage.setItem('kwick', JSON.stringify(newState));
             return newState;
         case "DISCONNECT_USER":
             newState.id = null;
             newState.token = null;
+            sessionStorage.setItem('kwick', JSON.stringify(newState));
             return newState;
         default:
             return state;
