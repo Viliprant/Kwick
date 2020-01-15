@@ -12,8 +12,9 @@ export default function OfflineRouter() {
   return (
     <Router>
         <Switch>
-          <Route path="*" component={Login}/>
+          <Route exact path="/" component={Login}/>
           <Route path="/signup" component={SignUp}/>
+          <Route path="*" component={Login}/>
         </Switch>
     </Router>
   );
