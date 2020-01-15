@@ -1,6 +1,7 @@
 #mainNavbar .linkP{
     color: #56baed;
     font-size: 1.10rem;
+    cursor: pointer;
 }
 
 #mainNavbar .linkP:hover{
