@@ -3,7 +3,8 @@ import reducers from './reducers';
 
 let initialState = {
     id: null,
-    token: null
+    token: null,
+    timeLastAction: null
 }
 const kwickSessionStorage = sessionStorage.getItem("kwick");
 if(kwickSessionStorage)
