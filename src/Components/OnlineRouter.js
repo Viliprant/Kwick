@@ -37,7 +37,6 @@ function OnlineRouter(props){
               {
                   return false
               }
-              console.log(response)
               return true;
           })
           .catch(() => {
