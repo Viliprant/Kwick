@@ -16,6 +16,12 @@ import Home from './Home';
 import {promisedJSONP, verifyStateResponse} from '../Helpers/helpersAPI'
 import ChatPage from './ChatPage';
 
+const wrapperOnlineRouter = {
+  display: "flex",
+  flexDirection: "column",
+  height: "100%"
+}
+
 function OnlineRouter(props){
 
   const logOut = async () => {
@@ -47,14 +53,16 @@ function OnlineRouter(props){
 
     return (
       <Router>
+        <div style={wrapperOnlineRouter}>
           <NavBar toDisconnect={logOut}/>
-          <div className="container mt-3">
+          <div className="container mt-3" style={{flexGrow:"2"}}>
             <Switch>
                 <Route exact path="/" component={Home}/>
                 <Route path="/chat" component={ChatPage}/>
                 <Route path="/logout"/>
             </Switch>
           </div>
+        </div>
       </Router>
   );
 }
