@@ -2,7 +2,7 @@ import React from 'react';
 
 //REDUX
 import {connect} from 'react-redux';
-import {disconnectUser} from '../redux/actions'
+import {disconnectUser, updateTimeStamp} from '../redux/actions'
 
 import '../ComponentsCSS/listUsers.css';
 import {promisedJSONP, verifyStateResponse} from '../Helpers/helpersAPI';
@@ -57,7 +57,9 @@ class ListUsers extends React.Component{
             .then((usersList)=>{
                 this.setState({
                     listLoggedUsers: usersList
-                })
+                });
+                this.props.updateTimeStamp();
+
             })
             .catch((error) => {
                 this.props.disconnectUser();
@@ -89,5 +91,5 @@ const mapStateToProps = (state, ownProps) => {
 
 export default connect(
     mapStateToProps,//Listener
-    {disconnectUser} //actions
+    {disconnectUser, updateTimeStamp} //actions
     )(ListUsers)

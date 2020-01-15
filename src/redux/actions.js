@@ -6,3 +6,7 @@ export const connectUser = (data) => ({
 export const disconnectUser = () => ({
         type: "DISCONNECT_USER"
 });
+
+export const updateTimeStamp = () => ({
+        type: "UPDATE_TIMESTAMP"
+});

@@ -11,6 +11,11 @@ function reducer(state, action) {
         case "DISCONNECT_USER":
             newState.id = null;
             newState.token = null;
+            newState.timeLastAction = null;
+            sessionStorage.setItem('kwick', JSON.stringify(newState));
+            return newState;
+        case "UPDATE_TIMESTAMP":
+            newState.timeLastAction = Date.now();
             sessionStorage.setItem('kwick', JSON.stringify(newState));
             return newState;
         default:
