@@ -55,7 +55,7 @@ function OnlineRouter(props){
       <Router>
         <div style={wrapperOnlineRouter}>
           <NavBar toDisconnect={logOut}/>
-          <div className="container mt-3" style={{flexGrow:"2"}}>
+          <div className="container mt-3" style={{flexGrow:"2",overflow:"hidden"}}>
             <Switch>
                 <Route exact path="/" component={Home}/>
                 <Route path="/chat" component={ChatPage}/>

@@ -11,7 +11,7 @@ class ChatPage extends React.Component{
                 <div id="wrapper-listusers">
                     <ListUsers/>
                 </div>
-                <div id="wrapper-chat">
+                <div id="wrapper-chatside">
                     <Chat/>
                 </div>
             </div>

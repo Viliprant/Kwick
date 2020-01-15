@@ -7,6 +7,7 @@ class Home extends React.Component{
                 <h1>Bienvenue sur Kwick !</h1>
                 <p>Une superbe application de messagerie instantannée</p>
             </div>
+            
         );
     }
 }
