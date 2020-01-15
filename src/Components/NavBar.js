@@ -22,9 +22,9 @@ function NavBar(props){
         <nav id="mainNavbar" className="navbar navbar-light bg-light">
         <ul className="list-link">
         <li className="nav-item">
-            <NavLink className="navbar-brand" exact to="/">
-            <img style={{marginRight: "10px"}} src={logo} alt=""/>
-            <span>Kwick</span>
+            <NavLink  exact to="/">
+                <img style={{marginRight: "10px"}} src={logo} alt=""/>
+                <span className="navbar-brand" style={{verticalAlign: "middle"}}>Kwick</span>
             </NavLink>
         </li>
         <li className="nav-item">
