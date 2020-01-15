@@ -19,7 +19,6 @@ function OnlineRouter(props){
 
   const logOut = async () => {
     const stateResquest = await sendDisconnectionToAPI();
-    console.log('stateResquest:',stateResquest)
     if(stateResquest)
     {
       props.disconnectUser();
