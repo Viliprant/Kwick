@@ -14,6 +14,7 @@ import {disconnectUser} from '../redux/actions';
 import NavBar from './NavBar';
 import Home from './Home';
 import {promisedJSONP, verifyStateResponse} from '../Helpers/helpersAPI'
+import ChatPage from './ChatPage';
 
 function OnlineRouter(props){
 
@@ -51,7 +52,7 @@ function OnlineRouter(props){
           <div className="container mt-3">
             <Switch>
                 <Route exact path="/" component={Home}/>
-                <Route path="/chat"/>
+                <Route path="/chat" component={ChatPage}/>
                 <Route path="/logout"/>
             </Switch>
           </div>
