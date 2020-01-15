@@ -4,3 +4,14 @@
     padding: 10px 5px;
     border-bottom: 1px solid rgba(0,0,0,0.10);
 }
+
+#wrapper-list-users{
+    overflow: auto;
+    height: 550px;
+}
+
+.wrapper-user{
+    min-height: 70px;
+    width: 100%;
+    border-bottom: 1px solid rgba(0,0,0,0.10);
+}

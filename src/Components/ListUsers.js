@@ -5,7 +5,7 @@ import '../ComponentsCSS/listUsers.css';
 function Users(props){
     return(
         <>
-            <div>
+            <div className="wrapper-user">
 
             </div>
         </>
@@ -15,12 +15,16 @@ function Users(props){
 class ListUsers extends React.Component{
     render(){
         return(
-            <>
+            <div>
                 <div id="wrapper-tittle">
                     <span>Utilisateurs connectés :</span>
                 </div>
-                <Users/>
-            </>
+                <div id="wrapper-list-users">
+                    <Users/>
+                    <Users/>
+                    <Users/>
+                </div>
+            </div>
         )
     }
 }
