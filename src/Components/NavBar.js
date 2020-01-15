@@ -19,7 +19,7 @@ function NavBar(props){
     }
   
     return(
-        <nav id="mainNavbar" className="navbar navbar-light bg-light">
+        <nav id="mainNavbar" className="navbar navbar-light">
             <ul className="list-link">
                 <li className="nav-item">
                     <NavLink  exact to="/">

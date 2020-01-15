@@ -22,6 +22,15 @@ const wrapperOnlineRouter = {
   height: "100%"
 }
 
+const containerStyle = {
+  flexGrow:"2",
+  overflow:"hidden",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center"
+}
+
 function OnlineRouter(props){
 
   const logOut = async () => {
@@ -55,7 +64,7 @@ function OnlineRouter(props){
       <Router>
         <div style={wrapperOnlineRouter}>
           <NavBar toDisconnect={logOut}/>
-          <div className="container mt-3" style={{flexGrow:"2",overflow:"hidden"}}>
+          <div className="container" style={containerStyle}>
             <Switch>
                 <Route exact path="/" component={Home}/>
                 <Route path="/chat" component={ChatPage}/>

@@ -25,10 +25,17 @@ class Chat extends React.Component{
                 <div id="wrapper-list-message">
                     <Message/>
                     <Message/>
+                    <Message/>
+                    <Message/>
+                    <Message/>
+                    <Message/>
+                    <Message/>
                 </div>
                 <div id="wrapper-send-text-area">
-                    <textarea id="send-text-area" placeholder="test"></textarea>
-                    <input id="send-input" type="button" value="Send"/>
+                    <textarea id="send-text-area"></textarea>
+                    <div id="send-input">
+
+                    </div>
                 </div>
             </div>
         )

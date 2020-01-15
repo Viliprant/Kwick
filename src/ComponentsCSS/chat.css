@@ -1,10 +1,10 @@
 #wrapper-chat{
+    
     height: 100%;
     display: flex;
     flex-direction: column;
-    padding: 10px 10px 0 10px;
-    background-color: rgba(129,161,166,1); /* (71,104,138,1)*/
-
+    background-color: rgba(71,104,138,1);
+    padding: 10px;
 }
 
 #wrapper-list-message{
@@ -14,20 +14,32 @@
 }
 
 #wrapper-send-text-area{
-    background-color: white;
-    height: 10%;
-    margin-bottom: 10px;
+    min-height: 12%;
 }
 
 #send-text-area{
-    border-radius: 40px 40px 40px 40px;
+    border-radius: 15px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     border: 0;
+    height: 100%;
+    padding: 6px 10px;
+    width: 90%;
+    resize: none;
 }
 
 #send-input{
-    
+    display: inline-block;
+    height: 100%;
+    width: calc(10% - 10px);
+    margin-left: 10px;
+    background-color: rgba(66,2,27,0.76);
+    background-image: url("../assets/avion-papier-send.png");
+    background-size: 35px;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
+
 
 .wrapper-message{
     margin-bottom: 15px;
