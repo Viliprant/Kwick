@@ -26,7 +26,6 @@ class Login extends React.Component {
         const userData = await this.verifyConnection();
         if(userData !== false)
         {
-            console.log('Change Store...');
             this.props.connectUser(userData);
         }
     }
@@ -59,7 +58,6 @@ class Login extends React.Component {
 
     sendConnectionToAPI = async (identifiant, mdp) => {
         const url = 'http://greenvelvet.alwaysdata.net/kwick/api/login';
-        console.log("Sendind to API...");
         
         return await promisedJSONP(`${url}/${identifiant}/${mdp}`)
             .then((response) => {

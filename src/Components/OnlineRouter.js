@@ -45,7 +45,6 @@ function OnlineRouter(props){
     const id = props.id;
     const token = props.token;
     const url = 'http://greenvelvet.alwaysdata.net/kwick/api/logout';
-    console.log("Sendind to API...");
         
       return await promisedJSONP(`${url}/${token}/${id}`)
           .then((response) => {

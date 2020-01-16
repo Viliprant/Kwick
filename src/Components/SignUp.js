@@ -27,7 +27,6 @@ class SignUp extends React.Component {
         const userData = await this.verifyRegistration();
         if(userData !== false)
         {
-            console.log('Change Store...');
             this.props.connectUser(userData);
         }
     }
@@ -60,7 +59,6 @@ class SignUp extends React.Component {
 
     sendRegistrationToAPI = async (identifiant, mdp) => {
         const url = 'http://greenvelvet.alwaysdata.net/kwick/api/signup';
-        console.log("Sendind to API...");
         
         return await promisedJSONP(`${url}/${identifiant}/${mdp}`)
             .then((response) => {

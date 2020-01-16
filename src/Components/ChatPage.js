@@ -5,6 +5,7 @@ import Chat from './Chat';
 import '../ComponentsCSS/chatPage.css';
 
 class ChatPage extends React.Component{
+
     render(){
         return(
             <div id="wrapper-chatpage">

@@ -74,7 +74,7 @@
 }
 
 .own-messages .content-message{
-    background-color: purple;
+    background-color: rgba(66,2,27,0.76);
     margin: 0;
     color: white;
     border-radius: 10px;

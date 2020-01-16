@@ -66,7 +66,7 @@ class Chat extends React.Component{
                     listMessages: listMessages
                 });
                 this.props.updateTimeStamp();
-                this.divChat.current.scrollTo(0, this.divChat.current.scrollHeight);
+                this.divChat.current.scrollTo(0, this.divChat.current.scrollHeight - 650);
             })
     }
 
@@ -74,7 +74,6 @@ class Chat extends React.Component{
         const token = this.props.token;
         const timestamp = getTimestampOfDay(new Date());
         const url = 'http://greenvelvet.alwaysdata.net/kwick/api/talk/list';
-        console.log("Sendind to API...");
         
         return await promisedJSONP(`${url}/${token}/${timestamp}`)
             .then((response) => {
@@ -108,7 +107,6 @@ class Chat extends React.Component{
         const id = this.props.id;
         const messageToSend = message;
         const url = 'http://greenvelvet.alwaysdata.net/kwick/api/say';
-        console.log("Sendind to API...");
         
         return await promisedJSONP(`${url}/${token}/${id}/${messageToSend}`)
             .then((response) => {
@@ -123,6 +121,14 @@ class Chat extends React.Component{
             })
     }
 
+    getScrollbarPosition = (event) => {
+        const isDown = event.target.scrollHeight - event.target.scrollTop === this.divChat.current.clientHeight;
+        if(isDown)
+        {
+            this.updateMessage();
+        }
+    }
+
     componentDidMount(){
         this.updateMessage();
     }
@@ -130,7 +136,8 @@ class Chat extends React.Component{
     render(){
         return(
             <div id="wrapper-chat">
-                <div id="wrapper-list-message" ref={this.divChat}>
+                <div id="wrapper-list-message" ref={this.divChat} 
+                onScroll={this.getScrollbarPosition}>
                     {this.state.listMessages.map((message, index) =>
                         <Message key={index} infosMessages={message} isOwnMessage={this.props.username === message.user_name} />
                     )}

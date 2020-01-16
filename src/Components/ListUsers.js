@@ -29,12 +29,28 @@ class ListUsers extends React.Component{
         this.state = {
             listLoggedUsers: []
         }
+        this.refresh = setInterval(()=>{
+            this.updateUsersLogged();
+        }, 1000);
+    }
+
+    updateUsersLogged(){
+        this.getUsersLoggedFromAPI()
+            .then((usersList)=>{
+                this.setState({
+                    listLoggedUsers: usersList
+                });
+                this.props.updateTimeStamp();
+
+            })
+            .catch((error) => {
+                this.props.disconnectUser();
+            })
     }
 
     async getUsersLoggedFromAPI(){
         const token = this.props.token;
         const url = 'http://greenvelvet.alwaysdata.net/kwick/api/user/logged';
-        console.log("Sendind to API...");
         
         return await promisedJSONP(`${url}/${token}`)
             .then((response) => {
@@ -53,17 +69,11 @@ class ListUsers extends React.Component{
     }
 
     componentDidMount(){
-        this.getUsersLoggedFromAPI()
-            .then((usersList)=>{
-                this.setState({
-                    listLoggedUsers: usersList
-                });
-                this.props.updateTimeStamp();
+        this.updateUsersLogged();
+    }
 
-            })
-            .catch((error) => {
-                this.props.disconnectUser();
-            })
+    componentWillUnmount(){
+        clearInterval(this.refresh);
     }
 
     render(){
