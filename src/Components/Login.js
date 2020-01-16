@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import '../ComponentsCSS/offlineForms.css';
 import logo from '../assets/Kwick-logo-144.png';
 import {promisedJSONP, verifyStateResponse} from '../Helpers/helpersAPI';
-import {handleChange} from '../Helpers/helpersComponent'
+import {handleChange} from '../Helpers/helpersComponent';
 
 //REDUX
 import {connect} from 'react-redux';

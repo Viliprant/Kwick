@@ -2,6 +2,7 @@ import React from 'react';
 
 import '../ComponentsCSS/chat.css';
 import {promisedJSONP, verifyStateResponse} from '../Helpers/helpersAPI';
+import {getTimestampOfDay} from '../Helpers/helpersComponent';
 
 //REDUX
 import {connect} from 'react-redux';
@@ -21,7 +22,9 @@ function Message(props){
         let dateToReturn = date;
         if(isToday(date))
         {
-            dateToReturn = `${date.getHours()}:${date.getMinutes()}`;
+            const options = { hour: 'numeric', minute:'numeric' };
+            dateToReturn = date.toLocaleDateString('fr-FR', options);
+            dateToReturn = dateToReturn.slice(dateToReturn.length - 5);
         }
         else{
             const options = { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute:'numeric' };
@@ -52,13 +55,14 @@ class Chat extends React.Component{
         this.state = {
             listMessages: []
         }
+        this.textareaMessage = React.createRef();
+        this.divChat = React.createRef(); // for scroll
     }
 
     async getMessagesFromAPI(){
         const token = this.props.token;
-        const timestamp = 0;
+        const timestamp = getTimestampOfDay(new Date());
         const url = 'http://greenvelvet.alwaysdata.net/kwick/api/talk/list';
-        this.divChat = React.createRef(); // for scroll
         console.log("Sendind to API...");
         
         return await promisedJSONP(`${url}/${token}/${timestamp}`)
@@ -77,8 +81,8 @@ class Chat extends React.Component{
             })
     }
 
-    onClickSendMessage(){
-        console.log('sending...');
+    onClickSendMessage= () => {
+        console.log(encodeURI(this.textareaMessage.current.value))
     }
 
     componentDidMount(){
@@ -104,7 +108,7 @@ class Chat extends React.Component{
                     )}
                 </div>
                 <div id="wrapper-send-text-area">
-                    <textarea id="send-text-area"></textarea>
+                    <textarea id="send-text-area" name="textareaMessage" ref={this.textareaMessage} ></textarea>
                     <div id="send-input" onClick={this.onClickSendMessage}></div>
                 </div>
             </div>
