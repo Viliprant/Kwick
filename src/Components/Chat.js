@@ -58,6 +58,7 @@ class Chat extends React.Component{
         const token = this.props.token;
         const timestamp = 0;
         const url = 'http://greenvelvet.alwaysdata.net/kwick/api/talk/list';
+        this.divChat = React.createRef(); // for scroll
         console.log("Sendind to API...");
         
         return await promisedJSONP(`${url}/${token}/${timestamp}`)
@@ -87,7 +88,8 @@ class Chat extends React.Component{
                     listMessages: listMessages
                 });
                 this.props.updateTimeStamp();
-
+                console.log(this.myRef)
+                this.divChat.current.scrollTo(0, this.divChat.current.scrollHeight);
             })
             .catch((error) => {
                 this.props.disconnectUser();
@@ -97,7 +99,7 @@ class Chat extends React.Component{
     render(){
         return(
             <div id="wrapper-chat">
-                <div id="wrapper-list-message">
+                <div id="wrapper-list-message" ref={this.divChat}>
                     {this.state.listMessages.map((message, index) =>
                         <Message key={index} infosMessages={message} isOwnMessage={false} />
                     )}
