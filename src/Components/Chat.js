@@ -76,6 +76,10 @@ class Chat extends React.Component{
             })
     }
 
+    onClickSendMessage(){
+        console.log('sending...');
+    }
+
     componentDidMount(){
         this.getMessagesFromAPI()
             .then((listMessages)=>{
@@ -100,9 +104,7 @@ class Chat extends React.Component{
                 </div>
                 <div id="wrapper-send-text-area">
                     <textarea id="send-text-area"></textarea>
-                    <div id="send-input">
-
-                    </div>
+                    <div id="send-input" onClick={this.onClickSendMessage}></div>
                 </div>
             </div>
         )
