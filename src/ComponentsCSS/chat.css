@@ -11,6 +11,8 @@
     height: 100%;
     overflow: auto;
     margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 #wrapper-send-text-area{
@@ -41,9 +43,14 @@
 }
 
 
-.wrapper-message{
+.wrapper-messages{
     margin-bottom: 15px;
     max-width: 50%;
+}
+
+.own-messages{
+    align-self: flex-end;
+    margin-right: 10px;
 }
 
 .author-message{
@@ -53,14 +60,24 @@
 
 }
 
-.content-message{
+.other-messages .content-message{
     background-color: blanchedalmond;
     margin: 0;
-    display: inline-block;
     border-radius: 10px;
     padding: 6px 10px;
     font-weight: 400;
 }
+
+.own-messages .content-message{
+    background-color: purple;
+    margin: 0;
+    color: white;
+    border-radius: 10px;
+    padding: 6px 10px;
+    font-weight: 400;
+}
+
+
 
 .date-message{
     font-size: 0.8rem;
