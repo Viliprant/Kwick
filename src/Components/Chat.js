@@ -88,7 +88,6 @@ class Chat extends React.Component{
                     listMessages: listMessages
                 });
                 this.props.updateTimeStamp();
-                console.log(this.myRef)
                 this.divChat.current.scrollTo(0, this.divChat.current.scrollHeight);
             })
             .catch((error) => {
