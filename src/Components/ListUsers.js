@@ -73,8 +73,13 @@ class ListUsers extends React.Component{
                     <span>Utilisateurs connectés :</span>
                 </div>
                 <div id="wrapper-list-users">
-                    {this.state.listLoggedUsers.map((username) =>
-                        <User key={username} username={username} />
+                    {this.state.listLoggedUsers.map((username) =>{
+                        if(username !== this.props.username)
+                        {
+                            return <User key={username} username={username} />
+                        }
+                        return false;
+                    }
                     )}
                 </div>
             </div>
@@ -85,7 +90,8 @@ class ListUsers extends React.Component{
 const mapStateToProps = (state, ownProps) => {
     const newState = {...state};
     return {
-        token: newState.token
+        token: newState.token,
+        username: newState.username
     }
   }
 
