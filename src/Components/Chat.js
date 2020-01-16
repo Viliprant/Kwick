@@ -59,6 +59,17 @@ class Chat extends React.Component{
         this.divChat = React.createRef(); // for scroll
     }
 
+    updateMessage(){
+        this.getMessagesFromAPI()
+            .then((listMessages)=>{
+                this.setState({
+                    listMessages: listMessages
+                });
+                this.props.updateTimeStamp();
+                this.divChat.current.scrollTo(0, this.divChat.current.scrollHeight);
+            })
+    }
+
     async getMessagesFromAPI(){
         const token = this.props.token;
         const timestamp = getTimestampOfDay(new Date());
@@ -81,22 +92,39 @@ class Chat extends React.Component{
             })
     }
 
-    onClickSendMessage= () => {
-        console.log(encodeURI(this.textareaMessage.current.value))
+    onClickSendMessage= async () => {
+        const message = encodeURI(this.textareaMessage.current.value);
+        const stateRequest = await this.sendMessagesToAPI(message);
+        if(stateRequest)
+        {
+            this.props.updateTimeStamp();
+            this.updateMessage();
+            this.textareaMessage.current.value = "";
+        }
+    }
+
+    async sendMessagesToAPI(message){
+        const token = this.props.token;
+        const id = this.props.id;
+        const messageToSend = message;
+        const url = 'http://greenvelvet.alwaysdata.net/kwick/api/say';
+        console.log("Sendind to API...");
+        
+        return await promisedJSONP(`${url}/${token}/${id}/${messageToSend}`)
+            .then((response) => {
+                if(!verifyStateResponse(response))
+                {
+                    return false;
+                }
+                return true;
+            })
+            .catch(() => {
+                return false;
+            })
     }
 
     componentDidMount(){
-        this.getMessagesFromAPI()
-            .then((listMessages)=>{
-                this.setState({
-                    listMessages: listMessages
-                });
-                this.props.updateTimeStamp();
-                this.divChat.current.scrollTo(0, this.divChat.current.scrollHeight);
-            })
-            .catch((error) => {
-                this.props.disconnectUser();
-            })
+        this.updateMessage();
     }
 
     render(){
@@ -119,7 +147,8 @@ class Chat extends React.Component{
 const mapStateToProps = (state, ownProps) => {
     const newState = {...state};
     return {
-        token: newState.token
+        token: newState.token,
+        id: newState.id
     }
   }
 
