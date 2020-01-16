@@ -46,7 +46,9 @@
 
 .wrapper-messages{
     margin-bottom: 15px;
-    max-width: 50%;
+    width: fit-content;
+    max-width: 75%;
+    word-break: break-all;
 }
 
 .own-messages{
@@ -66,9 +68,9 @@
     margin: 0;
     border-radius: 10px;
     padding: 6px 10px;
-    font-weight: 400;
     word-wrap: break-word;
     font-size: 1.1rem;
+    display: inline-block;
 }
 
 .own-messages .content-message{
@@ -77,8 +79,9 @@
     color: white;
     border-radius: 10px;
     padding: 6px 10px;
-    font-weight: 400;
     word-wrap: break-word;
+    font-size: 1.1rem;
+    display: inline-block;
 }
 
 

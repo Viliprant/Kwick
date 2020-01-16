@@ -132,7 +132,7 @@ class Chat extends React.Component{
             <div id="wrapper-chat">
                 <div id="wrapper-list-message" ref={this.divChat}>
                     {this.state.listMessages.map((message, index) =>
-                        <Message key={index} infosMessages={message} isOwnMessage={false} />
+                        <Message key={index} infosMessages={message} isOwnMessage={this.props.username === message.user_name} />
                     )}
                 </div>
                 <div id="wrapper-send-text-area">
@@ -148,7 +148,8 @@ const mapStateToProps = (state, ownProps) => {
     const newState = {...state};
     return {
         token: newState.token,
-        id: newState.id
+        id: newState.id,
+        username: newState.username
     }
   }
 
