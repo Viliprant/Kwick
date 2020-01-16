@@ -2,7 +2,7 @@ import React from 'react';
 
 //REDUX
 import {connect} from 'react-redux';
-import {disconnectUser, updateTimeStamp} from '../redux/actions'
+import {disconnectUser, updateTimeStamp} from '../redux/actions';
 
 import '../ComponentsCSS/listUsers.css';
 import {promisedJSONP, verifyStateResponse} from '../Helpers/helpersAPI';

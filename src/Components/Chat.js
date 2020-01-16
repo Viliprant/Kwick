@@ -2,6 +2,10 @@ import React from 'react';
 
 import '../ComponentsCSS/chat.css';
 
+//REDUX
+import {connect} from 'react-redux';
+import {disconnectUser, updateTimeStamp} from '../redux/actions';
+
 function Message(props){
     return(
         <div className={"wrapper-messages " + (props.isOwnMessage ? 'own-messages' : 'other-messages')}>
@@ -19,6 +23,14 @@ function Message(props){
 }
 
 class Chat extends React.Component{
+
+    constructor(props){
+        super(props);
+        this.state = {
+            listMessages: []
+        }
+    }
+
     render(){
         return(
             <div id="wrapper-chat">
@@ -42,4 +54,14 @@ class Chat extends React.Component{
     }
 }
 
-export default Chat;
+const mapStateToProps = (state, ownProps) => {
+    const newState = {...state};
+    return {
+        token: newState.token
+    }
+  }
+
+export default connect(
+    mapStateToProps,//Listener
+    {disconnectUser, updateTimeStamp} //actions
+    )(Chat)
