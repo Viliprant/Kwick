@@ -71,7 +71,8 @@ class SignUp extends React.Component {
 
                 const userData = {
                     id: response.result.id,
-                    token: response.result.token
+                    token: response.result.token,
+                    username: this.state.inputIdentifiant
                 }
                 return userData;
             })
