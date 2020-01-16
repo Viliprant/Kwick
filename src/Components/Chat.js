@@ -38,9 +38,13 @@ function Message(props){
             <div className="author-message">
                 {props.isOwnMessage ? '' : props.infosMessages.user_name}
             </div>
-            <p className="content-message">
-                {props.infosMessages.content}
-            </p>
+            <div style={{position:"relative"}}>
+                <p className="content-message">
+                    {props.infosMessages.content}
+                </p>
+                <div className="triangle"></div>
+            </div>
+            
             <div className="date-message">
                 {convertTimestampToDate(props.infosMessages.timestamp)}
             </div>
