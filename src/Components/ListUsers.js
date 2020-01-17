@@ -32,19 +32,18 @@ class ListUsers extends React.Component{
         this.refresh = setInterval(()=>{
             this.updateUsersLogged();
         }, 1000);
+        this.isComponentMounted = true;
     }
 
     updateUsersLogged(){
         this.getUsersLoggedFromAPI()
             .then((usersList)=>{
-                this.setState({
+                if(this.isComponentMounted){
+                    this.setState({
                     listLoggedUsers: usersList
-                });
-                this.props.updateTimeStamp();
-
-            })
-            .catch((error) => {
-                this.props.disconnectUser();
+                    });
+                    this.props.updateTimeStamp();
+                }
             })
     }
 
@@ -74,6 +73,7 @@ class ListUsers extends React.Component{
 
     componentWillUnmount(){
         clearInterval(this.refresh);
+        this.isComponentMounted = false;
     }
 
     render(){

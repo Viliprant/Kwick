@@ -61,16 +61,21 @@ class Chat extends React.Component{
         }
         this.textareaMessage = React.createRef();
         this.divChat = React.createRef(); // for scroll
+        this.isComponentMounted = true; // for asyn functions
     }
 
     updateMessage(){
         this.getMessagesFromAPI()
             .then((listMessages)=>{
-                this.setState({
+                if(this.isComponentMounted)
+                {
+                    this.setState({
                     listMessages: listMessages
-                });
-                this.props.updateTimeStamp();
-                this.divChat.current.scrollTo(0, this.divChat.current.scrollHeight - 650);
+                    });
+                    this.props.updateTimeStamp();
+                    this.divChat.current.scrollTo(0, this.divChat.current.scrollHeight - 650);
+                }
+                
             })
     }
 
@@ -135,6 +140,10 @@ class Chat extends React.Component{
 
     componentDidMount(){
         this.updateMessage();
+    }
+
+    componentWillUnmount(){
+        this.isComponentMounted = false;
     }
 
     render(){
