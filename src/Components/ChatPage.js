@@ -13,7 +13,7 @@ function Profil(props){
             <div id="profil">
                 <div id="circle-profil"></div>
                 <div id="username-profil">
-                    <span>{props.username.toUpperCase()}</span>
+                    <span>{props.username}</span>
                 </div>
             </div>
         </div>

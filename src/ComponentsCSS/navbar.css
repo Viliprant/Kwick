@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "Lobster Regular";
+    src: url("../assets/Typos/Lobster-Regular.ttf");
+   }
+
 #mainNavbar{
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     background-color: white;
@@ -8,6 +13,10 @@
     font-size: 1.10rem;
     cursor: pointer;
 }
+#mainNavbar .navbar-brand{
+    font-family: "Lobster Regular";
+    font-size: 25px;
+}
 
 #mainNavbar .linkP:hover{
     color: rgba(71,104,138,1);
@@ -16,6 +25,9 @@
 
 .list-link li{
     list-style:none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .list-link{
     margin: 0;

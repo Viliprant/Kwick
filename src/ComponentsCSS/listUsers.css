@@ -25,6 +25,8 @@
 }
 
 .profil-user{
+    padding-right: 4px;
+    font-family: "Lobster Regular";
     border: 3px solid rgba(255,255,255,0.40);
     border-radius: 50%;
     min-width: 50px;

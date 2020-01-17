@@ -9,7 +9,6 @@ import Message from './Message';
 import {connect} from 'react-redux';
 import {disconnectUser, updateTimeStamp} from '../redux/actions';
 
-
 class Chat extends React.Component{
 
     constructor(props){
@@ -96,6 +95,10 @@ class Chat extends React.Component{
         }
     }
 
+    getOlderMessages = () => {
+        
+    }
+
     componentDidMount(){
         this.updateMessage();
     }
@@ -109,6 +112,11 @@ class Chat extends React.Component{
             <div id="wrapper-chat">
                 <div id="wrapper-list-message" ref={this.divChat} 
                 onScroll={this.getScrollbarPosition}>
+                    <div id="wrapper-getoldermesasges">
+                        <div id="button-getoldermesasges" onClick={this.getOlderMessages}>
+                            <span>Show previous day's messages</span>
+                        </div>
+                    </div>
                     {this.state.listMessages.map((message, index) =>
                         <Message key={index} infosMessages={message} isOwnMessage={this.props.username === message.user_name} />
                     )}
