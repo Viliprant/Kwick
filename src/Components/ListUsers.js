@@ -12,7 +12,7 @@ function User(props){
         <>
             <div className="wrapper-user">
                 <div className="profil-user">
-                    <span>{props.username[0].toUpperCase()}</span>
+                    <span>{props.username.trim()[0].toUpperCase()}</span>
                 </div>
                 <div className="infos-user">
                     <span>{props.username}</span>

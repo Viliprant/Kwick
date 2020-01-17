@@ -2,8 +2,8 @@ import React from 'react';
 
 import '../ComponentsCSS/chat.css';
 import {promisedJSONP, verifyStateResponse} from '../Helpers/helpersAPI';
-import {getTimestampOfDay} from '../Helpers/helpersComponent';
 import Message from './Message';
+import {isToday, getTimestampOfDay} from '../Helpers/helpersComponent';
 
 //REDUX
 import {connect} from 'react-redux';
@@ -19,10 +19,13 @@ class Chat extends React.Component{
         this.textareaMessage = React.createRef();
         this.divChat = React.createRef(); // for scroll
         this.isComponentMounted = true; // for asyn functions
+        this.timestampOlderMessage = new Date();
     }
 
-    updateMessage(){
-        this.getMessagesFromAPI()
+    updateMessage(newtimestampOlderMessage){
+        const timestampOlderMessage = newtimestampOlderMessage;
+        const previousScrollPositionFromBottom = this.divChat.current.scrollHeight;
+        this.getMessagesFromAPI(timestampOlderMessage)
             .then((listMessages)=>{
                 if(this.isComponentMounted)
                 {
@@ -30,15 +33,22 @@ class Chat extends React.Component{
                     listMessages: listMessages
                     });
                     this.props.updateTimeStamp();
-                    this.divChat.current.scrollTo(0, this.divChat.current.scrollHeight - 650);
+                    if(isToday(timestampOlderMessage))
+                    {
+                        this.divChat.current.scrollTo(0, this.divChat.current.scrollHeight - 650);
+                    }
+                    else{
+                        this.divChat.current.scrollTo(0, this.divChat.current.scrollHeight - previousScrollPositionFromBottom);
+                    }
                 }
                 
             })
     }
 
-    async getMessagesFromAPI(){
+    async getMessagesFromAPI(newtimestampOlderMessage){
         const token = this.props.token;
-        const timestamp = getTimestampOfDay(new Date());
+        const timestampOlderMessage = newtimestampOlderMessage;
+        const timestamp = getTimestampOfDay(timestampOlderMessage);
         const url = 'http://greenvelvet.alwaysdata.net/kwick/api/talk/list';
         
         return await promisedJSONP(`${url}/${token}/${timestamp}`)
@@ -63,7 +73,7 @@ class Chat extends React.Component{
         if(stateRequest)
         {
             this.props.updateTimeStamp();
-            this.updateMessage();
+            this.updateMessage(this.timestampOlderMessage);
             this.textareaMessage.current.value = "";
         }
     }
@@ -91,16 +101,22 @@ class Chat extends React.Component{
         const isDown = event.target.scrollHeight - event.target.scrollTop === this.divChat.current.clientHeight;
         if(isDown)
         {
-            this.updateMessage();
+            this.refreshChat();
         }
     }
 
+    refreshChat = () => {
+        this.timestampOlderMessage = new Date();
+        this.updateMessage(this.timestampOlderMessage);
+    }
+
     getOlderMessages = () => {
-        
+        this.timestampOlderMessage = new Date((getTimestampOfDay(this.timestampOlderMessage) - 1) * 1000);
+        this.updateMessage(this.timestampOlderMessage);
     }
 
     componentDidMount(){
-        this.updateMessage();
+        this.updateMessage(this.timestampOlderMessage);
     }
 
     componentWillUnmount(){
@@ -112,9 +128,12 @@ class Chat extends React.Component{
             <div id="wrapper-chat">
                 <div id="wrapper-list-message" ref={this.divChat} 
                 onScroll={this.getScrollbarPosition}>
-                    <div id="wrapper-getoldermesasges">
+                    <div id="wrapper-options">
                         <div id="button-getoldermesasges" onClick={this.getOlderMessages}>
-                            <span>Show previous day's messages</span>
+                            <span>Voir les messages précédents</span>
+                        </div>
+                        <div id="button-refresh" onClick={this.refreshChat}>
+                            <span>Ré-actualiser</span>
                         </div>
                     </div>
                     {this.state.listMessages.map((message, index) =>

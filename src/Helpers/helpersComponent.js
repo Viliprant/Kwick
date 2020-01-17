@@ -13,3 +13,10 @@ export function getTimestampOfDay(date){
     const timestamp = startOfDay / 1000;
     return timestamp;
 }
+
+export const isToday = (date) => {
+    const today = new Date();
+    return date.getDate() === today.getDate() &&
+        date.getMonth() === today.getMonth() &&
+        date.getFullYear() === today.getFullYear()
+  }

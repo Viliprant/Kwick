@@ -1,14 +1,9 @@
 
 import React from 'react';
 
-function Message(props){
+import {isToday} from '../Helpers/helpersComponent';
 
-    const isToday = (date) => {
-        const today = new Date();
-        return date.getDate() === today.getDate() &&
-            date.getMonth() === today.getMonth() &&
-            date.getFullYear() === today.getFullYear()
-      }
+function Message(props){
 
     const convertTimestampToDate = (timestamp) => {
         const date = new Date(timestamp * 1000); // en milisecondes
