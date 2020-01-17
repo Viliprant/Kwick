@@ -82,7 +82,7 @@ class ListUsers extends React.Component{
                 <div id="wrapper-tittle">
                     <span>Utilisateurs connectés :</span>
                 </div>
-                <div id="wrapper-list-users">
+                <div id="list-users">
                     {this.state.listLoggedUsers.map((username) =>{
                         if(username !== this.props.username)
                         {

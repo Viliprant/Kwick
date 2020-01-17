@@ -8,7 +8,7 @@
     padding: 10px 5px;
 }
 
-#wrapper-list-users{
+#list-users{
     overflow: auto;
     height: 550px;
 }
@@ -16,7 +16,6 @@
 .wrapper-user{
     min-height: 70px;
     width: 100%;
-    /*border-bottom: 1px solid rgba(255,255,255,0.10);*/
     display: flex;
     flex-direction: row;
     align-items: center;
